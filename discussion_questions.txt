@@ -1,0 +1,91 @@
+
+Runtime
+
+    1.  When calculating the Big O notation for a particular algorithm, it’s necessary to consider the length of time it takes for the algorithm to run as the algorithm’s workload approaches infinity. You can think of the workload as the number of tasks required to complete a job. What determines the workload of figuring out whether your box of animal crackers contains an elephant?
+
+    A:  What determines the workload is amount of work needed in the worse case scenario for the task.  In the worst case scenario, you would need to go through the whole box of crackers, so the runtime of finding an elephant in the box of animal crackers would be O(n). 
+
+
+    2. Order the following runtimes in ascending order by efficiency as n approaches infinity:
+        O(1)
+        O(log n)
+        O(n)
+        O(n log n)
+        O(n^2)
+        O(2^n)
+        
+
+Stacks and Queues
+
+    1.In the following cases, would a stack or queue be a more appropriate data structure?
+        1. The process of loading and unloading pallets onto a flatbed truck
+        A:  A stack would be appropriate here.
+        2. Putting bottle caps on bottles of beer as they roll down an assembly line
+        A:  A queue would be appropriate here.
+        3. Calculating the solution to this mathematical expression: 2 + (7 * 4) - (3 / 2)
+        A:  A stack would be appropriate here. 
+
+    2. Describe two more situations where a queue would be an appropriate data structure.
+    A:  The situations where a queue would be appropriate would be examples of real life queues: ordering food/coffee, waiting at the DMV, handling/cooking meal orders at restaurants. 
+
+    3. Describe two more situations where a stack would be an appropriate data structure.
+    A:  Stacks would be appropriate for eating pancakes (since you'd be foolish to grab the one on the bottom), getting cookies from a cookie jar (unless your jar was fairly flat/wide), washing stacked dishes in the sink. 
+
+
+
+
+
+Linked Lists
+
+    1. Given the linked list below, which are the nodes? What is the data for each node? Where is the head? Where is the tail? (Please be as specific as possible — exactly which parts of the diagram correspond to each part? Arrows? Boxes? Text?)
+    A:  There are three nodes: the apple node, the berry node, and the cherry node.  
+    The date for apple node is the string, "Apple".  The data for the berry node is the string, "Berry".  The data for the cherry node is the string, "Cherry". 
+    The head is the apple node.
+    This linked list does not track the tail, based on the image provided.  (Without looking at the code, either the linked list class did not have a tail attribute, or it did and it hasn't been set in this linked list.)
+
+    2.  What’s the difference between doubly- and singly-linked lists?
+    A:  A node in a singly-linked list contains data and its next attribute (which references the next node it's pointing to, or None).  
+
+    A node in a doubly-linked list contains data, its next attribute, and its previous attribute (a reference to the node before it, or None).  
+
+    Assuming the doubly-linked list has a tail (although I don't know why a it wouldn't be without a tail), a doubly-linked list has a better runtime for popping items off the right side, since you know what node came before the tail (that you're about to pop off).    
+
+
+    3.  Why is it faster to append to a linked list if we keep track of the tail as an attribute?
+    A:  It's faster to append to a linked list if the tail is tracked since we know exactly where the end of the linked list is, and can go directly to it. Since you can go directly to the tail, you can change the next pointer reference away from None to the node you want to append, and then set the tail attribute to the new node.  If the tail wasn't being tracked, then you would have to traverse the whole list to find the last node before you can append. 
+
+Trees
+
+    1. Given the tree above, in what order would a Breadth First Search (BFS) algorithm visit each node until finding burrito (starting at food)? Just list the order of nodes visited; no need to recreate the state of the algorithm data in your answer.
+    A:  Using a Breadth First Search, to find burrito, starting at food, you would visit these nodes:
+    Start at [food]
+    Pop food, which is not burrito. Add children of food:[Italian, Indian, Mexican]
+    Pop Italian, which is not burrito.  Add children of Italian:[Indian, Mexican, lasagna, pizza]
+    Pop Indian, which is not burrito.  Add children of Indian: [Mexican, lasagna, pizza, tikka masala, saag]
+    Pop Mexican, which is not burrito.  Add children of Mexican: [lasagna, pizza, tikka masala, saag, burrito, tacos, enchiladas]
+    Pop lasagna, which is not burrito.  Add children of lasagna (which is None): [pizza, tikka masala, saag, burrito, tacos, enchiladas]
+    Pop pizza, which is not burrito.  Add children of pizza: [tikka masala, saag, burrito, tacos, enchiladas, thin crust, Chicago-style, New York-style, Sicilian]
+    Pop tikka masala, which is not burrito.  Add children of tikka masala (which is None): [saag, burrito, tacos, enchiladas, thin crust, Chicago-style, New York-style, Sicilian]
+    Pop saag, which is not burrito.  Add children of saag (which is None): [burrito, tacos, enchiladas, thin crust, Chicago-style, New York-style, Sicilian]
+    Pop burrito, which is burrito, which is what we were looking for. 
+    
+    2. Given the tree above, in what order would a Depth First Search (DFS) algorithm visit each node until finding Chicago-style (starting at food)? Just list the order of nodes visited; no need to recreate the state of the algorithm data in your answer.
+    A: Using a Depth First Search to find Chicago-Style starting at food, you would visit these nodes:
+    [food]
+    [Italian, Indian, Mexican]
+    [Italian, Indian, burrito, tacos, enchiladas]
+    [Italian, Indian, burrito, tacos]
+    [Italian, Indian, burrito]
+    [Italian, Indian]
+    [Italian, tikka masala, saag]
+    [Italian, tikka masala]
+    [Italian]
+    [lasagna, pizza]
+    [lasagna, thin crust, Chicago-style, New York-style, Sicilian]
+    [lasagna, thin crust, Chicago-style, New York-style]
+    [lasagna, thin crust, Chicago-style]
+    We would find Chicago-style when we popped the last value here!
+
+    3. How is a binary search tree different from other trees?
+    A:  A node in a binary tree only has two children: a left and a right child.  They are usually ordered by some rule (for example, it could be ordered alphabetically), and should be balanced to have faster search runtime.  When balanced, they are very fast for searching, as their run time is O(log n). If it's not balanced, the runtime for a search could be O(n).
+
